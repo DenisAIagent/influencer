@@ -12,7 +12,7 @@ import {
   CheckIcon
 } from '@heroicons/react/24/outline';
 import { Button } from '../components/ui/Button';
-import { Card, CardContent, StatsCard } from '../components/ui/Card';
+import { Card, CardContent } from '../components/ui/Card';
 import { SimpleThemeToggle } from '../components/theme/ThemeToggle';
 
 const HomePage: React.FC = () => {
@@ -48,31 +48,22 @@ const HomePage: React.FC = () => {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <motion.div
-            className="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-r from-indigo-400/20 to-purple-400/20 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
+        {/* Background Elements - TRÈS SUBTILS */}
+        <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+          <div 
+            className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%)',
+              filter: 'blur(100px)',
+              opacity: 0.03
             }}
           />
-          <motion.div
-            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
+          <div 
+            className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%)',
+              filter: 'blur(120px)',
+              opacity: 0.02
             }}
           />
         </div>
@@ -150,27 +141,59 @@ const HomePage: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto"
           >
-            <StatsCard
-              title="Audits réalisés"
-              value="250K+"
-              change={15.2}
-              changeLabel="ce mois"
-              icon={<ChartBarIcon className="h-8 w-8" />}
-            />
-            <StatsCard
-              title="Précision IA"
-              value="98.5%"
-              change={2.1}
-              changeLabel="amélioration"
-              icon={<ShieldCheckIcon className="h-8 w-8" />}
-            />
-            <StatsCard
-              title="Clients satisfaits"
-              value="15K+"
-              change={23.8}
-              changeLabel="croissance"
-              icon={<UserGroupIcon className="h-8 w-8" />}
-            />
+            {[
+              {
+                title: "Audits réalisés",
+                value: "250K+",
+                change: "+15.2%",
+                changeLabel: "ce mois",
+                icon: <ChartBarIcon className="h-8 w-8" />
+              },
+              {
+                title: "Précision IA",
+                value: "98.5%",
+                change: "+2.1%",
+                changeLabel: "amélioration",
+                icon: <ShieldCheckIcon className="h-8 w-8" />
+              },
+              {
+                title: "Clients satisfaits",
+                value: "15K+",
+                change: "+23.8%",
+                changeLabel: "croissance",
+                icon: <UserGroupIcon className="h-8 w-8" />
+              }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 + index * 0.1 }}
+                className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-lg hover:shadow-xl transition-all duration-200 group"
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">
+                      {stat.title}
+                    </p>
+                    <p className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-1">
+                      {stat.value}
+                    </p>
+                    <div className="flex items-center text-sm">
+                      <span className="text-green-600 dark:text-green-400 font-medium mr-1">
+                        {stat.change}
+                      </span>
+                      <span className="text-slate-500 dark:text-slate-400">
+                        {stat.changeLabel}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="text-indigo-500 dark:text-indigo-400 opacity-80 group-hover:opacity-100 transition-opacity">
+                    {stat.icon}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
