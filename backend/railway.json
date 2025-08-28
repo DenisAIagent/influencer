@@ -1,0 +1,12 @@
+{
+  "build": {
+    "command": "npm run build",
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "startCommand": "npm start",
+    "numPorts": 1,
+    "internalPorts": [5000],
+    "publicPorts": [5000]
+  }
+}
