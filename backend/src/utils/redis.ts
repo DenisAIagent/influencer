@@ -10,6 +10,11 @@ redisClient.on('error', (err) => {
 });
 
 export const connectRedis = async () => {
+  if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
+    logger.info('Simulating Redis connection in development/test environment.');
+    return;
+  }
+
   if (!redisUrl) {
     throw new Error('REDIS_URL is not defined');
   }

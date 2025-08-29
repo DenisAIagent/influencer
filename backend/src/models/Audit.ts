@@ -46,11 +46,12 @@ export interface IAudit extends Document {
       percentage: number;
     }>;
   };
-  status: 'pending' | 'processing' | 'completed' | 'failed';
+   status: 'pending' | 'in_progress' | 'completed' | 'failed';
   error?: string;
   processingTimeMs?: number;
   createdAt: Date;
   completedAt?: Date;
+  startedAt?: Date;
 }
 
 const auditSchema = new Schema<IAudit>({
@@ -58,15 +59,15 @@ const auditSchema = new Schema<IAudit>({
   influencer: {
     platform: {
       type: String,
-      enum: ['instagram', 'tiktok', 'youtube'],
-      required: true
+      enum: ["instagram", "tiktok", "youtube"],
+      required: true,
     },
     username: { type: String, required: true },
     displayName: String,
     profilePicture: String,
     bio: String,
     verified: { type: Boolean, default: false },
-    url: String
+    url: String,
   },
   metrics: {
     followers: { type: Number, default: 0 },
@@ -75,7 +76,7 @@ const auditSchema = new Schema<IAudit>({
     avgLikes: { type: Number, default: 0 },
     avgComments: { type: Number, default: 0 },
     avgViews: Number,
-    engagementRate: { type: Number, default: 0 }
+    engagementRate: { type: Number, default: 0 },
   },
   qualityAnalysis: {
     overallScore: { type: Number, min: 0, max: 100, default: 0 },
@@ -85,40 +86,41 @@ const auditSchema = new Schema<IAudit>({
     redFlags: [
       {
         type: String,
-        severity: { type: String, enum: ['low', 'medium', 'high'] },
-        description: String
-      }
-    ]
+        severity: { type: String, enum: ["low", "medium", "high"] },
+        description: String,
+      },
+    ],
   },
   audience: {
     genderDistribution: {
       male: { type: Number, default: 0 },
       female: { type: Number, default: 0 },
-      other: { type: Number, default: 0 }
+      other: { type: Number, default: 0 },
     },
     ageGroups: [
       {
         range: String,
-        percentage: Number
-      }
+        percentage: Number,
+      },
     ],
     topCountries: [
       {
         country: String,
-        percentage: Number
-      }
-    ]
+        percentage: Number,
+      },
+    ],
   },
   status: {
     type: String,
-    enum: ['pending', 'processing', 'completed', 'failed'],
-    default: 'pending'
+    enum: ["pending", "in_progress", "completed", "failed"],
+    default: "pending",
   },
   error: String,
   processingTimeMs: Number,
-  completedAt: Date
+  completedAt: Date,
+  startedAt: Date,
 }, {
-  timestamps: true
-});
+  timestamps: true,
+});;
 
 export default mongoose.model<IAudit>('Audit', auditSchema);
