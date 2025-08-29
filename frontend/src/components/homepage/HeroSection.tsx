@@ -8,11 +8,9 @@ import {
   SparklesIcon, 
   StarIcon,
   EyeIcon,
-  TrendingUpIcon,
+  ArrowUpRightIcon,
   UserGroupIcon
-} from '@heroicons/react/24/outline';
-
-const HeroSection: React.FC = () => {
+} from '@heroicons/react/24/outline';const HeroSection: React.FC = () => {
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Animated gradient background */}
@@ -124,7 +122,7 @@ const HeroSection: React.FC = () => {
               color: "success"
             },
             {
-              icon: TrendingUpIcon,
+              icon: ArrowUpRightIcon,
               title: "Insights Prédictifs",
               description: "Prévisions de performance et ROI basées sur l'IA",
               color: "accent"

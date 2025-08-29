@@ -5,9 +5,20 @@ import { persist } from 'zustand/middleware';
 interface User {
   id: string;
   email: string;
-  name: string;
+  firstName?: string;
+  lastName?: string;
+  company?: string;
   avatar?: string;
   role?: string;
+  subscription?: { 
+    plan: string; 
+    status: string; 
+    currentPeriodEnd: string; 
+  };
+  usage?: { 
+    audits: number; 
+    limit: number; 
+  };
 }
 
 interface AuthState {

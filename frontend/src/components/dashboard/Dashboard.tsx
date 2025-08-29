@@ -39,7 +39,7 @@ const Dashboard: React.FC = () => {
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Bonjour {user?.firstName} 👋</h1>
               <p className="text-gray-600 mt-1">
-                Plan {getPlanName(user?.subscription?.plan || 'free')} • {user?.usage?.auditsThisMonth || 0} / {getPlanLimits(user?.subscription?.plan || 'free')} audits ce mois
+                Plan {getPlanName(user?.subscription?.plan || 'free')} • {user?.usage?.audits || 0} / {getPlanLimits(user?.subscription?.plan || 'free')} audits ce mois
               </p>
             </div>
             <div className="mt-4 sm:mt-0">
@@ -62,13 +62,13 @@ const Dashboard: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <StatsCard
             title="Audits ce mois"
-            value={user?.usage?.auditsThisMonth || 0}
+            value={user?.usage?.audits || 0}
             subtitle={`/ ${getPlanLimits(user?.subscription?.plan || 'free')}`}
             icon={<BarChartIcon className="w-6 h-6" />}
             color="blue"
             progress={
               user?.subscription?.plan !== 'enterprise'
-                ? (((user?.usage?.auditsThisMonth || 0) / parseInt((getPlanLimits(user?.subscription?.plan || 'free') as any).toString())) * 100)
+                ? (((user?.usage?.audits || 0) / parseInt((getPlanLimits(user?.subscription?.plan || 'free') as any).toString())) * 100)
                 : undefined
             }
           />
@@ -84,7 +84,7 @@ const Dashboard: React.FC = () => {
             <RecentAudits audits={recentAudits || []} isLoading={auditsLoading} searchQuery={searchQuery} />
           </div>
         </div>
-        {user?.subscription?.plan === 'free' && (user?.usage?.auditsThisMonth || 0) > 40 && (
+        {user?.subscription?.plan === 'free' && (user?.usage?.audits || 0) > 40 && (
           <div className="mt-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white">
             <div className="flex items-center justify-between">
               <div>

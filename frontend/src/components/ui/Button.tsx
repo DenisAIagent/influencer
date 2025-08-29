@@ -87,7 +87,7 @@ const premiumShimmer = {
       duration: 2,
       repeat: Infinity,
       repeatDelay: 3,
-      ease: 'linear'
+      ease: "linear" as const
     }
   }
 };
@@ -154,7 +154,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
 
         {/* Button content */}
-        <span className={loading ? 'opacity-70' : ''}>{children}</span>
+        <span className={loading ? 'opacity-70' : ''}>{children as React.ReactNode}</span>
 
         {/* Right icon */}
         {rightIcon && (

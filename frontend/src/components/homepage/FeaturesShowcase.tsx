@@ -8,7 +8,7 @@ import {
   BoltIcon,
   GlobeAltIcon,
   StarIcon,
-  QuoteIcon
+  ChatBubbleLeftRightIcon
 } from '@heroicons/react/24/outline';
 
 const FeaturesShowcase: React.FC = () => {
@@ -179,7 +179,7 @@ const FeaturesShowcase: React.FC = () => {
                 <div className="relative p-8 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-4xl hover:bg-white/10 hover:border-white/20 transition-all duration-500 card-hover">
                   {/* Quote icon */}
                   <div className="absolute top-6 right-6 w-8 h-8 text-primary-400/30">
-                    <QuoteIcon className="w-full h-full" />
+                    <ChatBubbleLeftRightIcon className="w-full h-full" />
                   </div>
                   
                   <div className="relative">

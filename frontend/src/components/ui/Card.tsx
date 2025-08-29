@@ -62,7 +62,7 @@ const cardAnimations = {
     y: 0, 
     scale: 1,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 400,
       damping: 25
     }
@@ -70,7 +70,7 @@ const cardAnimations = {
   hover: {
     y: -4,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 400,
       damping: 25
     }
@@ -170,10 +170,12 @@ CardFooter.displayName = "CardFooter";
 const StatsCard = forwardRef<HTMLDivElement, CardProps & {
   title: string;
   value: string | number;
+  subtitle?: string;
   change?: number;
   changeLabel?: string;
   icon?: React.ReactNode;
-}>(({ title, value, change, changeLabel, icon, className, ...props }, ref) => {
+  progress?: number; // Added progress property
+}>(({ title, value, subtitle, change, changeLabel, icon, progress, className, ...props }, ref) => {
   const isPositive = change !== undefined && change >= 0;
   
   return (

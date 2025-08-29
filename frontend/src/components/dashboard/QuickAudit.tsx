@@ -43,7 +43,7 @@ const QuickAudit: React.FC = () => {
     const limits: any = { free: 50, starter: 500, pro: 2000, enterprise: Infinity };
     const plan = user.subscription?.plan || 'free';
     const limit = limits[plan] || 50;
-    return (user.usage?.auditsThisMonth || 0) < limit;
+    return (user.usage?.audits || 0) < limit;
   };
   return (
     <Card>
@@ -111,7 +111,7 @@ const QuickAudit: React.FC = () => {
               <p className="text-xs text-gray-500">
                 {canCreateAudit() ? (
                   <>
-                    {user.usage?.auditsThisMonth || 0} audit{(user.usage?.auditsThisMonth || 0) > 1 ? 's' : ''} utilisé{(user.usage?.auditsThisMonth || 0) > 1 ? 's' : ''} ce mois
+                    {user.usage?.audits || 0} audit{(user.usage?.audits || 0) > 1 ? 's' : ''} utilisé{(user.usage?.audits || 0) > 1 ? 's' : ''} ce mois
                   </>
                 ) : (
                   <span className="text-red-600">Limite d'audits atteinte pour ce mois</span>

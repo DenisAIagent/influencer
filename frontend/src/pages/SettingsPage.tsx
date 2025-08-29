@@ -7,7 +7,7 @@ const SettingsPage: React.FC = () => {
   const { user, setUser, token } = useAuthStore();
   const [firstName, setFirstName] = useState(user?.firstName || '');
   const [lastName, setLastName] = useState(user?.lastName || '');
-  const [company, setCompany] = useState(user?.company || '');
+  const [company, setCompany] = useState(user?.company || "");
   const [saving, setSaving] = useState(false);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
