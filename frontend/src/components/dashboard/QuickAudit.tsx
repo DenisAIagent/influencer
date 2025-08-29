@@ -3,8 +3,8 @@ import { useMutation, useQueryClient } from 'react-query';
 import { Search as SearchIcon, Loader, Instagram, Music, Youtube } from 'lucide-react';
 import { api } from '../../services/api';
 import { useAuthStore } from '../../store/authStore';
-import { Button } from '../ui/Button';
-import { Card } from '../ui/Card';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const QuickAudit: React.FC = () => {
   const [platform, setPlatform] = useState<'instagram' | 'tiktok' | 'youtube'>('instagram');

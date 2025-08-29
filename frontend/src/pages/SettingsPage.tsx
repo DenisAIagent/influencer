@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuthStore } from '../store/authStore';
 import axios from 'axios';
-import { Button } from '../components/ui/Button';
+import { Button } from '@/components/ui/button';
 
 const SettingsPage: React.FC = () => {
   const { user, setUser, token } = useAuthStore();

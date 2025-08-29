@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import { BarChart as BarChartIcon, TrendingUp, DollarSign, Users, Loader, Search as SearchIcon } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 import { api } from '../../services/api';
-import { StatsCard } from '../ui/Card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import QuickAudit from './QuickAudit';
 import RecentAudits from './RecentAudits';
 
@@ -60,21 +60,50 @@ const Dashboard: React.FC = () => {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-6 px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <StatsCard
-            title="Audits ce mois"
-            value={user?.usage?.audits || 0}
-            subtitle={`/ ${getPlanLimits(user?.subscription?.plan || 'free')}`}
-            icon={<BarChartIcon className="w-6 h-6" />}
-            color="blue"
-            progress={
-              user?.subscription?.plan !== 'enterprise'
-                ? (((user?.usage?.audits || 0) / parseInt((getPlanLimits(user?.subscription?.plan || 'free') as any).toString())) * 100)
-                : undefined
-            }
-          />
-          <StatsCard title="Score moyen" value={stats?.averageScore || '—'} subtitle="Derniers audits" icon={<TrendingUp className="w-6 h-6" />} color="green" />
-          <StatsCard title="Audits totaux" value={stats?.totalAudits || 0} subtitle="Depuis le début" icon={<Users className="w-6 h-6" />} color="purple" />
-          <StatsCard title="Économies" value="€2,400" subtitle="vs HypeAuditor" icon={<DollarSign className="w-6 h-6" />} color="yellow" />
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BarChartIcon className="w-6 h-6" />
+                Audits ce mois
+              </CardTitle>
+              <CardDescription>
+                {user?.usage?.audits || 0} / {getPlanLimits(user?.subscription?.plan || 'free')}
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <TrendingUp className="w-6 h-6" />
+                Score moyen
+              </CardTitle>
+              <CardDescription>
+                {stats?.averageScore || '—'} - Derniers audits
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Users className="w-6 h-6" />
+                Audits totaux
+              </CardTitle>
+              <CardDescription>
+                {stats?.totalAudits || 0} - Depuis le début
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <DollarSign className="w-6 h-6" />
+                Économies
+              </CardTitle>
+              <CardDescription>
+                €2,400 - vs HypeAuditor
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-1">

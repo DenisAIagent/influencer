@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useAuthStore } from '../store/authStore';
-import { Button } from '../components/ui/Button';
+import { Button } from '@/components/ui/button';
 
 const plans = [
   { name: 'Starter', price: '49€ / mois', priceId: import.meta.env.VITE_STRIPE_PRICE_STARTER },

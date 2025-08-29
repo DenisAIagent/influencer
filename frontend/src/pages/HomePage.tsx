@@ -11,8 +11,8 @@ import {
   ArrowRightIcon,
   CheckIcon
 } from '@heroicons/react/24/outline';
-import { Button } from '../components/ui/Button';
-import { Card, CardContent } from '../components/ui/Card';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { SimpleThemeToggle } from '../components/theme/ThemeToggle';
 
 const HomePage: React.FC = () => {
@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
                 <Button variant="ghost" size="sm">Se connecter</Button>
               </Link>
               <Link to="/register">
-                <Button variant="premium" size="sm">Commencer</Button>
+                <Button variant="default" size="sm">Commencer</Button>
               </Link>
             </div>
           </div>
@@ -118,18 +118,18 @@ const HomePage: React.FC = () => {
           >
             <Link to="/register">
               <Button 
-                variant="premium" 
+                variant="default" 
                 size="lg"
-                rightIcon={<ArrowRightIcon className="h-5 w-5" />}
               >
+                <ArrowRightIcon className="h-5 w-5 mr-2" />
                 Commencer gratuitement
               </Button>
             </Link>
             <Button 
               variant="outline" 
               size="lg"
-              leftIcon={<PlayIcon className="h-5 w-5" />}
             >
+              <PlayIcon className="h-5 w-5 mr-2" />
               Voir la démo
             </Button>
           </motion.div>
@@ -256,7 +256,7 @@ const HomePage: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card variant="glass" interactive hover="glow" className="h-full">
+                <Card className="h-full">
                   <CardContent className="p-6">
                     <div className="text-indigo-500 dark:text-indigo-400 mb-4">
                       {feature.icon}
@@ -284,7 +284,7 @@ const HomePage: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <Card variant="gradient" className="p-12">
+            <Card className="p-12">
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
                 Prêt à révolutionner votre marketing d'influence ?
               </h2>
@@ -294,12 +294,12 @@ const HomePage: React.FC = () => {
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
                 <Link to="/register">
-                  <Button variant="premium" size="xl">
+                  <Button variant="default" size="lg">
                     Essai gratuit 14 jours
                   </Button>
                 </Link>
                 <Link to="/pricing">
-                  <Button variant="outline" size="xl">
+                  <Button variant="outline" size="lg">
                     Voir les tarifs
                   </Button>
                 </Link>

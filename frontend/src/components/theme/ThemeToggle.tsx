@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SunIcon, MoonIcon, ComputerDesktopIcon } from '@heroicons/react/24/outline';
 import { useTheme } from './ThemeProvider';
-import { Button } from '../ui/Button';
+import { Button } from '@/components/ui/button';
 
 const themes = [
   { value: 'light', label: 'Light', icon: SunIcon },
